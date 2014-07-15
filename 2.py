@@ -13,6 +13,7 @@ By considering the terms in the Fibonacci sequence whose values do not
 exceed four million, find the sum of the even-valued terms.
 """
 
+print __doc__
 #------------------------------------------
 #it could happen this way
 def fib():
