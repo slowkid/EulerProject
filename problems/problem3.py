@@ -12,13 +12,14 @@ from itertools import ifilter, count
 import cProfile as profile
 
 #----------------------------------------------------------------------------------
-#Here is an ingenious solution found on the web that creates an iterable that
-#returns a sequence of primes.
+#
 
 def get_prime_gen():
     """
+    Here is an ingenious solution found on the web that creates an iterable that
+    returns a sequence of primes.
+    
     This works for a couple of reasons:
-
     A) Because of python's short-cicuit evaluation of booleans.
         In the case of "and", if first parameter is false, false is returned
         and 2nd parameter is not evaluated. i.e. no append happens in this
@@ -31,7 +32,7 @@ def get_prime_gen():
     See Python itertools documentation for ifilter and count.
 
     An obvious optimization to this would skip all even numbers after 2 and
-        cut the number of iterations in half.
+    cut the number of iterations in half.
     """    
     return ifilter(
         lambda n, primes=[]:
@@ -59,10 +60,10 @@ def get_prime_gen2():
     """
     A small optimization to the above algorithm prime_gen.  The my_count function only
     returns [2,3,all odd numbers...]
-    """        
+    """
     return ifilter(
         lambda n, primes=[]:
-            all(n%p for p in primes) and not primes.append(n), 
+            all(n%p for p in primes) and not primes.append(n),
             my_count()
         )
 
@@ -87,5 +88,26 @@ def print_prime_factors(number, primes):
             number = number / n
             print n
     print "\n#----------------------------------------------------------------------------\n"
-target = 600851475143
-profile.run("print_prime_factors(target, get_prime_gen2())")
+
+def main():
+    """
+    In this case, my optimization saves < 1/100 sec of execution time on most back-to-back runs.
+    Hardly worth it in the context of this problem since it usually runs in < 1/3 sec anyway.
+    """
+    target = 600851475143
+    profile.run("print_prime_factors(target, get_prime_gen())")
+    profile.run("print_prime_factors(target, get_prime_gen2())")
+
+def test_primes(target):
+    primes = get_prime_gen()
+    while True:
+        prime = next(primes)
+        if prime > target:
+            print prime
+            break
+    
+if __name__ == "__main__":
+    #main()
+    profile.run("test_primes(50000)")
+
+
