@@ -37,7 +37,7 @@ Icon
 .Trashes
 
 # Compiled python bytecode files
-*.pyc
+.pyc
 
 # Eclipse project related files
 .project
