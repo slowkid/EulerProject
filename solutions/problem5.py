@@ -7,20 +7,15 @@ Published on 30 November 2001 at 06:00 pm [Server Time]
 What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 """
 
-def get_divisors(number):
-    result = []
-    for d in range(number,1,-1):
-        if not number % d:
-            result.append(d)
-    return result
+from fractions import gcd
 
-for i in range(20,10,-1):
-    print get_divisors(i)
-    
-def solution():
-    result = 1
-    for n in range(20,10,-1):
-        result *= n
-    print result/16/15/12
-    
-solution()
+
+def lcm(a, b):
+    return a * b / gcd(a, b)
+
+def solve():
+    return reduce(lcm, range(1,20+1))
+
+
+if __name__ == "__main__":    
+    print solve()
