@@ -8,27 +8,21 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 Find the largest palindrome made from the product of two 3-digit numbers.
 """
 
-print "problem4"
-
-for a in range(1000):
-    for b in range(1000):
-        c = a * b
-
-print "done"
 
 def is_palindrome(candidate):
     """
     Determine if candidate is palindromic. candidate must be 'int' or 'str'
     
     Notice the slicing notation in the return line.  Slice notation is
-    [start:end:stride].  Any of these can be left blank and will default
-    as follows: start == blank is beginning of str.  end == blank is end of
-    string.  stride == blank is +1
+    [begin:end:stride].  Any of these can be left blank and will default
+    as follows: begin == blank is beginning of str.  end == blank is end of
+    string.  stride == blank is +1.  Negative strides start slice at end of
+    string and move backwards towards the beginning.
     """
     if type(candidate) in (int, long):
         candidate = str(candidate)
     if type(candidate) != str:
-        raise TypeError("is_palindrome(): candidate is not 'str' or 'int' type. type(candidate) = %s" % type(candidate))
+        raise TypeError("is_palindrome(): candidate is not 'str' or 'int' type. type(candidate) == %s" % type(candidate))
         
     #return whether candidate == reverse of itself.  ie is a palindrome
     return candidate == candidate[::-1]
@@ -44,11 +38,4 @@ def main():
     print(largest)
 
 if __name__ == "__main__":
-    #main()
-    word = "thunderbox"
-    print word[:]
-    print word[::]
-    print word[::1]
-    print word[::-1]
-    print word[::-2]
-    print word[::-1][::-1]
+    main()
