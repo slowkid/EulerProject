@@ -50,5 +50,4 @@ def solve():
     return p
 
 if __name__ == "__main__":
-    print "SOLUTION=", solve()
-    print "fuck"
+    print "SOLUTION=", solve()    
