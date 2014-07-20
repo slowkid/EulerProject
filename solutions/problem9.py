@@ -18,6 +18,11 @@ def product(iterable):
     return reduce(operator.mul, iterable, 1)
 
 def list_pythagorean_triples(limit):
+    """
+    This function works....but it sucks...for so many reasons.  I can't see how...
+    but I feel like I could eliminate the inner loop
+    """
+    limit += 1
     for a in range(3,limit):
         for b in range(a,limit-a):
             for c in range(b,limit-a-b):
@@ -25,7 +30,10 @@ def list_pythagorean_triples(limit):
                     yield (a, b, c)
 
 def solve():
-    return [product(pgt) for pgt in list_pythagorean_triples(1001) if sum(pgt) == 1000]
+    #return [product(pgt) for pgt in list_pythagorean_triples(1001) if sum(pgt) == 1000]
+    for pgt in list_pythagorean_triples(1000):
+        if sum(pgt) == 1000:
+            return product(pgt)
 
 if __name__ == "__main__":
     print "SOLUTION=", solve()
