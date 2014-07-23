@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Summation of primes
 Problem 10
@@ -6,12 +7,11 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
 """
-print __doc__
 
-
+#------------------------------------------------------------------------------ 
 from problem3 import get_prime_gen
 
-
+#------------------------------------------------------------------------------ 
 def primes_sieve(limit):
     """
     Too slow.  Takes too long even at lower limits like 100000.
@@ -73,6 +73,7 @@ def solve():
 def solve():
     return sum(sundaram3(2000000))
 
-
+#------------------------------------------------------------------------------ 
 if __name__ == "__main__":
+    print __doc__
     print "SOLUTION=", solve()    

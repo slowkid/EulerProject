@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """
 Largest product in a series
 Problem 8
@@ -10,11 +9,10 @@ The four adjacent digits in the 1000-digit "THE_NUMBER" that have the greatest p
 Find the thirteen adjacent digits in the 1000-digit "THE_NUMBER" that have the greatest product. 
 What is the value of this product?
 """
-print __doc__
-
+#------------------------------------------------------------------------------ 
 import operator
 
-
+#------------------------------------------------------------------------------ 
 THE_NUMBER = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
@@ -38,7 +36,7 @@ THE_NUMBER = """
 71636269561882670428252483600823257530420752963450
 """.replace('\n', '')
 
-
+#------------------------------------------------------------------------------ 
 def product(iterable):
     return reduce(operator.mul, iterable, 1)
 
@@ -49,5 +47,7 @@ def solve():
         p = max(product([int(d) for d in THE_NUMBER[i:i + run_size]]), p)
     return p
 
+#------------------------------------------------------------------------------ 
 if __name__ == "__main__":
+    print __doc__
     print "SOLUTION=", solve()    

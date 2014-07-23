@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Special Pythagorean triplet
 Problem 9
@@ -10,10 +11,11 @@ For example, 32 + 42 = 9 + 16 = 25 = 52.
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 """
-print __doc__
 
+#------------------------------------------------------------------------------ 
 import operator
 
+#------------------------------------------------------------------------------ 
 def product(iterable):
     return reduce(operator.mul, iterable, 1)
 
@@ -29,11 +31,12 @@ def list_pythagorean_triples(limit):
                 if a ** 2 + b ** 2 == c ** 2:
                     yield (a, b, c)
 
-def solve():
-    #return [product(pgt) for pgt in list_pythagorean_triples(1001) if sum(pgt) == 1000]
+def solve():    
     for pgt in list_pythagorean_triples(1000):
         if sum(pgt) == 1000:
             return product(pgt)
 
+#------------------------------------------------------------------------------ 
 if __name__ == "__main__":
+    print __doc__
     print "SOLUTION=", solve()
