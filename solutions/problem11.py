@@ -102,10 +102,11 @@ def solve(run_length):
                 #    highest = result
     #return(highest)
 
+#------------------------------------------------------------------------------ 
 def solve():
     g = THE_GRID
     maxp = 0
-    rows, cols, path_size = len(g), len(g[0]), 4
+    rows, cols, path_size = len(g), len(g[0]), 5
     
     for i in range(rows):
         for j in range(cols - path_size + 1):
@@ -116,15 +117,19 @@ def solve():
             if i < rows - path_size:
                 pdd = max(product([g[i+s][j+s] for s in range(path_size)]),
                           product([g[i+s][j+path_size-s-1] for s in range(path_size)]))
-                pdd = max(g[i][j] * g[i+1][j+1] * g[i+2][j+2] * g[i+3][j+3], 
-                          g[i][j+3] * g[i+1][j+2] * g[i+2][j+1] * g[i+3][j])
+                #pdd = max(g[i][j] * g[i+1][j+1] * g[i+2][j+2] * g[i+3][j+3], 
+                #          g[i][j+3] * g[i+1][j+2] * g[i+2][j+1] * g[i+3][j])
             maxp = max(maxp, phv, pdd)
     return maxp
 
 #------------------------------------------------------------------------------ 
-if __name__ == "__main__":
+def main():
     print "PROBLEM:\n"
     for line in __doc__.strip().split('\n'):
         print '\t', line    
     print "\nSOLUTION:"
     print "\n\t", solve()
+
+#------------------------------------------------------------------------------ 
+if __name__ == "__main__":
+    main()
