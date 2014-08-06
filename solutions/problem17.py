@@ -24,21 +24,22 @@ def split_triples(number):
         number = number[:-3]
 
 def convert_digit(digit):
-    digit_words = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+    digit_words = ["zero", "one", "two", "three", "four", 
+                   "five", "six", "seven", "eight", "nine"]
     
     if digit < 0 or digit > 9:
         raise ValueError("Out of range: digit = %s" % digit) 
     
-    return digit_words[digit] 
+    return digit_words[digit]
 
 def convert_double_digits(ddn):
     teen_words = ["ten", "eleven", "twelve", "thirteen", "fourteen", 
                   "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
-    tens_words = ["N/A", "N/A", "twenty", "thirty", "forty",
+    tens_words = ["~N/A~", "~N/A~", "twenty", "thirty", "forty",
                   "fifty", "sixty", "seventy", "eighty", "ninety"]
     
     if ddn < 10:        
-        result = convert_digit(ddn)        
+        result = convert_digit(ddn)
     elif ddn > 9 and ddn < 20:
         result = teen_words[ddn-10]
     elif ddn > 19 and ddn < 100:
@@ -54,14 +55,11 @@ def convert_double_digits(ddn):
 def convert_triple_digits(tdn):
     if tdn < 1000:
         hundreds, ddn = divmod(tdn, 100)
+        result = ""
         if hundreds:
-            result = convert_digit(hundreds) + " hundred "
-            if ddn:
-                result += "and "
-        else:
-            result = ""        
+            result += convert_digit(hundreds) + " hundred"        
         if ddn:
-            result += "%s" % convert_double_digits(ddn)
+            result += " and %s" % convert_double_digits(ddn)
     else:
         raise ValueError("Out of range: tdn = %s" % tdn)
     
@@ -76,8 +74,8 @@ def convert_number_to_words(number):
     result = ""
     for index, triple in enumerate(triples):
         #result = convert_triple_digits(triple)
-        template = "%s %s"
-        if index and triple:
+        template = "%s %s"        
+        if index and triple:            
             template += ", "
         if triple: 
             result = template % (convert_triple_digits(triple), triple_names[index]) + result
@@ -101,10 +99,6 @@ def main():
 #------------------------------------------------------------------------------ 
 if __name__ == "__main__":
     #main()
-    print convert_number_to_words(123456789)
-    #print convert_number_to_words(11101)
-    print convert_number_to_words(1000000001)
-    #print convert_number_to_words(1000001)
-    #print convert_number_to_words(1001)
-    print convert_number_to_words(101)
-    print convert_number_to_words(1000)
+    test_set = [102,120,1002,1203,102003,102304,1000002,1000020,1000200,1002003,1023045,1203450,100000300,102000003,102304567]
+    for n in test_set:
+        print convert_number_to_words(n)
